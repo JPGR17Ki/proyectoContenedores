@@ -46,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Contenido:</label>
-            <input type="text" class="form-control" id="cdiRecp_contenedor" placeholder="Compania .LTDA/ETC.">
+            <input type="text" class="form-control" id="contenido_contenedor" placeholder="Compania .LTDA/ETC.">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Descripcion:</label>
@@ -94,11 +94,11 @@
                 aduanero: contenedor.resp_contenedor.value,
                 com_emitente: contenedor.comEmi_contenedor.value,
                 city_emitente: contenedor.cdiEmi_contenedor.value,
-                com_recep: contenedor.genero.value,
-                ciudad_receptora: contenedor.nombre.value,
-                peso: contenedor.peso.value,
-                propietario: contenedor.propietario.value,
-                raza: contenedor.raza.value
+                com_recep: contenedor.comRecp_contenedor.value,
+                ciudad_receptora: contenedor.cdiRecp_contenedor.value,
+                contenido: contenedor.contenido_contenedor.value,
+                descripcion: contenedor.descripcion_contenedor.value,
+                estado: contenedor.estado_cont.value
             });
             contenedor.reset();
         });
