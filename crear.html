@@ -15,11 +15,11 @@
         <form action="#" id="form_ingresarCont">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Codigo del Contenedor</label>
-                <input type="text" class="form-control" id="cod_contenedor" placeholder="Codigo contenedor: #cont-001">
+                <input type="text" class="form-control" id="codigo" placeholder="Codigo contenedor: #cont-001">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">MARCA:</label>
-                <select class="form-control" id="marca_contenedor">
+                <select class="form-control" id="marca">
                 
                 <option>TRITON</option>
                 <option>MAERSK</option>
@@ -30,35 +30,35 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Aduanero Responsable:</label>
-                <input type="text" class="form-control" id="resp_contenedor" placeholder="Nombre y Apellido">
+                <input type="text" class="form-control" id="aduanero" placeholder="Nombre y Apellido">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Compania/Enviado por:</label>
-                <input type="text" class="form-control" id="comEmi_contenedor" placeholder="Compania Emitente">
+                <input type="text" class="form-control" id="com_emitente" placeholder="Compania Emitente">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Ciudad procedente:</label>
-                <input type="text" class="form-control" id="cdiEmi_contenedor" placeholder="Ciudad Procedente">
+                <input type="text" class="form-control" id="city_emitente" placeholder="Ciudad Procedente">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Compania/Recibido por:</label>
-                <input type="text" class="form-control" id="comRecp_contenedor" placeholder="Compania Receptora">
+                <input type="text" class="form-control" id="com_recep" placeholder="Compania Receptora">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Ciudad destino:</label>
-                <input type="text" class="form-control" id="cdiRecp_contenedor" placeholder="Ciudad Destino">
+                <input type="text" class="form-control" id="ciudad_recep" placeholder="Ciudad Destino">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Contenido:</label>
-                <input type="text" class="form-control" id="contenido_contenedor" placeholder="Contenidpo: Cajas/Autos/etc">
+                <input type="text" class="form-control" id="contenido" placeholder="Contenidpo: Cajas/Autos/etc">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descripcion:</label>
-                <textarea class="form-control" id="descripcion_contenedor" rows="3"></textarea>
+                <textarea class="form-control" id="descripcion" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Estado del contenedor:</label>
-                <select class="form-control" id="estado_cont">
+                <select class="form-control" id="estado">
                 <option>EN REVISION</option>
                 <option>ENTREGADO</option>
                 <option>RETENIDO</option>
@@ -95,16 +95,16 @@
         Gcontenedor.addEventListener("submit",async(e)=>{
             e.preventDefault();
             await addDoc(collection(db,"contenedor"),{
-                codigo: Gcontenedor.cod_contenedor.value,
-                marca: Gcontenedor.marca_contenedor.value,
-                aduanero: Gcontenedor.resp_contenedor.value,
-                com_emitente: Gcontenedor.comEmi_contenedor.value,
-                city_emitente: Gcontenedor.cdiEmi_contenedor.value,
-                com_recep: Gcontenedor.comRecp_contenedor.value,
-                ciudad_recep: Gcontenedor.cdiRecp_contenedor.value,
-                contenido: Gcontenedor.contenido_contenedor.value,
-                descripcion: Gcontenedor.descripcion_contenedor.value,
-                estado: Gcontenedor.estado_cont.value
+                codigo: Gcontenedor.codigo.value,
+                marca: Gcontenedor.marca.value,
+                aduanero: Gcontenedor.aduanero.value,
+                com_emitente: Gcontenedor.com_emitente.value,
+                city_emitente: Gcontenedor.city_emitente.value,
+                com_recep: Gcontenedor.com_recep.value,
+                ciudad_recep: Gcontenedor.ciudad_recep.value,
+                contenido: Gcontenedor.contenido.value,
+                descripcion: Gcontenedor.descripcion.value,
+                estado: Gcontenedor.estado.value
             });
             Gcontenedor.reset();
         });
