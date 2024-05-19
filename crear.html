@@ -15,14 +15,14 @@
         <h1 style="text-align: center;">CRUD DEBER</h1>
     </div>
     <div class="container">
-        <form id="form_ingresarCont">
+        <form id="formIngresarCont">
             <div class="form-group">
-                <label for="cod_contenedor">Código del Contenedor</label>
-                <input type="text" class="form-control" id="cod_contenedor" placeholder="Código contenedor: #cont-001" required>
+                <label for="codContenedor">Código del Contenedor</label>
+                <input type="text" class="form-control" id="codContenedor" placeholder="Código contenedor: #cont-001" required>
             </div>
             <div class="form-group">
-                <label for="marca_contenedor">Marca:</label>
-                <select class="form-control" id="marca_contenedor" required>
+                <label for="marcaContenedor">Marca:</label>
+                <select class="form-control" id="marcaContenedor" required>
                     <option>TRITON</option>
                     <option>MAERSK</option>
                     <option>UASC</option>
@@ -31,36 +31,36 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="resp_contenedor">Aduanero Responsable:</label>
-                <input type="text" class="form-control" id="resp_contenedor" placeholder="Nombre y Apellido" required>
+                <label for="respContenedor">Aduanero Responsable:</label>
+                <input type="text" class="form-control" id="respContenedor" placeholder="Nombre y Apellido" required>
             </div>
             <div class="form-group">
-                <label for="comEmi_contenedor">Compañía/Enviado por:</label>
-                <input type="text" class="form-control" id="comEmi_contenedor" placeholder="Compañía Emitente" required>
+                <label for="comEmiContenedor">Compañía/Enviado por:</label>
+                <input type="text" class="form-control" id="comEmiContenedor" placeholder="Compañía Emitente" required>
             </div>
             <div class="form-group">
-                <label for="cdiEmi_contenedor">Ciudad Procedente:</label>
-                <input type="text" class="form-control" id="cdiEmi_contenedor" placeholder="Ciudad Procedente" required>
+                <label for="cdiEmiContenedor">Ciudad Procedente:</label>
+                <input type="text" class="form-control" id="cdiEmiContenedor" placeholder="Ciudad Procedente" required>
             </div>
             <div class="form-group">
-                <label for="comRecp_contenedor">Compañía/Recibido por:</label>
-                <input type="text" class="form-control" id="comRecp_contenedor" placeholder="Compañía Receptora" required>
+                <label for="comRecpContenedor">Compañía/Recibido por:</label>
+                <input type="text" class="form-control" id="comRecpContenedor" placeholder="Compañía Receptora" required>
             </div>
             <div class="form-group">
-                <label for="cdiRecp_contenedor">Ciudad Destino:</label>
-                <input type="text" class="form-control" id="cdiRecp_contenedor" placeholder="Ciudad Destino" required>
+                <label for="cdiRecpContenedor">Ciudad Destino:</label>
+                <input type="text" class="form-control" id="cdiRecpContenedor" placeholder="Ciudad Destino" required>
             </div>
             <div class="form-group">
-                <label for="contenido_contenedor">Contenido:</label>
-                <input type="text" class="form-control" id="contenido_contenedor" placeholder="Contenido: Cajas/Autos/etc" required>
+                <label for="contenidoContenedor">Contenido:</label>
+                <input type="text" class="form-control" id="contenidoContenedor" placeholder="Contenido: Cajas/Autos/etc" required>
             </div>
             <div class="form-group">
-                <label for="descripcion_contenedor">Descripción:</label>
-                <textarea class="form-control" id="descripcion_contenedor" rows="3" required></textarea>
+                <label for="descripcionContenedor">Descripción:</label>
+                <textarea class="form-control" id="descripcionContenedor" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="estado_cont">Estado del contenedor:</label>
-                <select class="form-control" id="estado_cont" required>
+                <label for="estadoCont">Estado del contenedor:</label>
+                <select class="form-control" id="estadoCont" required>
                     <option>EN REVISION</option>
                     <option>ENTREGADO</option>
                     <option>RETENIDO</option>
@@ -68,15 +68,15 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Guardar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
-            <button type="button" class="btn btn-warning">Modificar</button>
+            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+            <button type="button" class="btn btn-warning" id="btnModificar">Modificar</button>
         </form>
     </div>
     
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -92,30 +92,45 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const Gcontenedor = document.getElementById("form_ingresarCont");
-        Gcontenedor.addEventListener("submit", async (e) => {
+        const formIngresarCont = document.getElementById("formIngresarCont");
+
+        formIngresarCont.addEventListener("submit", async (e) => {
             e.preventDefault();
             
             try {
                 await addDoc(collection(db, "contenedor"), {
-                    codigo: Gcontenedor.cod_contenedor.value,
-                    marca: Gcontenedor.marca_contenedor.value,
-                    aduanero: Gcontenedor.resp_contenedor.value,
-                    com_emitente: Gcontenedor.comEmi_contenedor.value,
-                    city_emitente: Gcontenedor.cdiEmi_contenedor.value,
-                    com_recep: Gcontenedor.comRecp_contenedor.value,
-                    ciudad_receptora: Gcontenedor.cdiRecp_contenedor.value,
-                    contenido: Gcontenedor.contenido_contenedor.value,
-                    descripcion: Gcontenedor.descripcion_contenedor.value,
-                    estado: Gcontenedor.estado_cont.value
+                    codigo: formIngresarCont.codContenedor.value,
+                    marca: formIngresarCont.marcaContenedor.value,
+                    aduanero: formIngresarCont.respContenedor.value,
+                    com_emitente: formIngresarCont.comEmiContenedor.value,
+                    city_emitente: formIngresarCont.cdiEmiContenedor.value,
+                    com_recep: formIngresarCont.comRecpContenedor.value,
+                    ciudad_receptora: formIngresarCont.cdiRecpContenedor.value,
+                    contenido: formIngresarCont.contenidoContenedor.value,
+                    descripcion: formIngresarCont.descripcionContenedor.value,
+                    estado: formIngresarCont.estadoCont.value
                 });
                 
                 // Resetear el formulario después de un envío exitoso
-                Gcontenedor.reset();
+                formIngresarCont.reset();
                 alert("¡Datos enviados exitosamente!");
             } catch (error) {
                 console.error("Error al agregar el documento: ", error);
                 alert("¡Error al enviar los datos!");
+            }
+        });
+
+        // Función para eliminar un documento
+        document.getElementById("btnEliminar").addEventListener("click", async () => {
+            const docId = prompt("Ingrese el ID del documento a eliminar:");
+            if (docId) {
+                try {
+                    await deleteDoc(doc(db, "contenedor", docId));
+                    alert("Documento eliminado exitosamente.");
+                } catch (error) {
+                    console.error("Error al eliminar el documento: ", error);
+                    alert("¡Error al eliminar el documento!");
+                }
             }
         });
     </script>
