@@ -1,191 +1,120 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contenedores</title>
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <div>
         <h1 style="text-align: center;">CRUD DEBER</h1>
     </div>
-    <div class="container">
-        <form id="formIngresarCont">
+    <div>
+        <form action="#" id="form_ingresarCont">
             <div class="form-group">
-                <label for="codContenedor">Código del Contenedor</label>
-                <input type="text" class="form-control" id="codContenedor" placeholder="Código contenedor: #cont-001" required>
+                <label for="exampleFormControlInput1">Codigo del Contenedor</label>
+                <input type="text" class="form-control" id="cod_contenedor" placeholder="Codigo contenedor: #cont-001">
             </div>
             <div class="form-group">
-                <label for="marcaContenedor">Marca:</label>
-                <select class="form-control" id="marcaContenedor" required>
-                    <option>TRITON</option>
-                    <option>MAERSK</option>
-                    <option>UASC</option>
-                    <option>P&O</option>
-                    <option>HAMBURG</option>
+                <label for="exampleFormControlSelect1">MARCA:</label>
+                <select class="form-control" id="marca_contenedor">
+                
+                <option>TRITON</option>
+                <option>MAERSK</option>
+                <option>UASC</option>
+                <option>P&O</option>
+                <option>HAMBURG</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="respContenedor">Aduanero Responsable:</label>
-                <input type="text" class="form-control" id="respContenedor" placeholder="Nombre y Apellido" required>
+                <label for="exampleFormControlInput1">Aduanero Responsable:</label>
+                <input type="text" class="form-control" id="resp_contenedor" placeholder="Nombre y Apellido">
             </div>
             <div class="form-group">
-                <label for="comEmiContenedor">Compañía/Enviado por:</label>
-                <input type="text" class="form-control" id="comEmiContenedor" placeholder="Compañía Emitente" required>
+                <label for="exampleFormControlInput1">Compania/Enviado por:</label>
+                <input type="text" class="form-control" id="comEmi_contenedor" placeholder="Compania Emitente">
             </div>
             <div class="form-group">
-                <label for="cdiEmiContenedor">Ciudad Procedente:</label>
-                <input type="text" class="form-control" id="cdiEmiContenedor" placeholder="Ciudad Procedente" required>
+                <label for="exampleFormControlInput1">Ciudad procedente:</label>
+                <input type="text" class="form-control" id="cdiEmi_contenedor" placeholder="Ciudad Procedente">
             </div>
             <div class="form-group">
-                <label for="comRecpContenedor">Compañía/Recibido por:</label>
-                <input type="text" class="form-control" id="comRecpContenedor" placeholder="Compañía Receptora" required>
+                <label for="exampleFormControlInput1">Compania/Recibido por:</label>
+                <input type="text" class="form-control" id="comRecp_contenedor" placeholder="Compania Receptora">
             </div>
             <div class="form-group">
-                <label for="cdiRecpContenedor">Ciudad Destino:</label>
-                <input type="text" class="form-control" id="cdiRecpContenedor" placeholder="Ciudad Destino" required>
+                <label for="exampleFormControlInput1">Ciudad destino:</label>
+                <input type="text" class="form-control" id="cdiRecp_contenedor" placeholder="Ciudad Destino">
             </div>
             <div class="form-group">
-                <label for="contenidoContenedor">Contenido:</label>
-                <input type="text" class="form-control" id="contenidoContenedor" placeholder="Contenido: Cajas/Autos/etc" required>
+                <label for="exampleFormControlInput1">Contenido:</label>
+                <input type="text" class="form-control" id="contenido_contenedor" placeholder="Contenidpo: Cajas/Autos/etc">
             </div>
             <div class="form-group">
-                <label for="descripcionContenedor">Descripción:</label>
-                <textarea class="form-control" id="descripcionContenedor" rows="3" required></textarea>
+                <label for="exampleFormControlTextarea1">Descripcion:</label>
+                <textarea class="form-control" id="descripcion_contenedor" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label for="estadoCont">Estado del contenedor:</label>
-                <select class="form-control" id="estadoCont" required>
-                    <option>EN REVISION</option>
-                    <option>ENTREGADO</option>
-                    <option>RETENIDO</option>
-                    <option>CANCELADO</option>
+                <label for="exampleFormControlSelect1">Estado del contenedor:</label>
+                <select class="form-control" id="marca_contenedor">
+                <option>EN REVISION</option>
+                <option>ENTREGADO</option>
+                <option>RETENIDO</option>
+                <option>CANCELADO</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
-            <button type="button" class="btn btn-warning" id="btnModificar">Modificar</button>
+            <button type="submit" class="btn btn-success" id="btn-success">Guardar</button>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-warning">Modificar</button>
         </form>
     </div>
-    
+    //bootstrap import
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDpx3Bh3TmHCnT2HbiLMcYjiY8HbNh9nTc",
-            authDomain: "contenedores-ee7fc.firebaseapp.com",
-            projectId: "contenedores-ee7fc",
-            storageBucket: "contenedores-ee7fc.appspot.com",
-            messagingSenderId: "325024016184",
-            appId: "1:325024016184:web:45922216c395b7848143cd"
+          apiKey: "AIzaSyDpx3Bh3TmHCnT2HbiLMcYjiY8HbNh9nTc",
+          authDomain: "contenedores-ee7fc.firebaseapp.com",
+          projectId: "contenedores-ee7fc",
+          storageBucket: "contenedores-ee7fc.appspot.com",
+          messagingSenderId: "325024016184",
+          appId: "1:325024016184:web:45922216c395b7848143cd"
         };
-
+      
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const formIngresarCont = document.getElementById("formIngresarCont");
-
-        formIngresarCont.addEventListener("submit", async (e) => {
+        const Gcontenedor = document.getElementById("form_ingresarCont");
+        Gcontenedor.addEventListener("submit",async(e)=>{
             e.preventDefault();
-            
-            try {
-                await addDoc(collection(db, "contenedor"), {
-                    codigo: formIngresarCont.codContenedor.value,
-                    marca: formIngresarCont.marcaContenedor.value,
-                    aduanero: formIngresarCont.respContenedor.value,
-                    com_emitente: formIngresarCont.comEmiContenedor.value,
-                    city_emitente: formIngresarCont.cdiEmiContenedor.value,
-                    com_recep: formIngresarCont.comRecpContenedor.value,
-                    ciudad_receptora: formIngresarCont.cdiRecpContenedor.value,
-                    contenido: formIngresarCont.contenidoContenedor.value,
-                    descripcion: formIngresarCont.descripcionContenedor.value,
-                    estado: formIngresarCont.estadoCont.value
-                });
-                
-                // Resetear el formulario después de un envío exitoso
-                formIngresarCont.reset();
-                alert("¡Datos enviados exitosamente!");
-            } catch (error) {
-                console.error("Error al agregar el documento: ", error);
-                alert("¡Error al enviar los datos!");
-            }
+            await addDoc(collection(db,"contenedor"),{
+                codigo: Gcontenedor.cod_contenedor.value,
+                marca: Gcontenedor.marca_contenedor.value,
+                aduanero: Gcontenedor.resp_contenedor.value,
+                com_emitente: Gcontenedor.comEmi_contenedor.value,
+                city_emitente: Gcontenedor.cdiEmi_contenedor.value,
+                com_recep: Gcontenedor.comRecp_contenedor.value,
+                ciudad_receptora: Gcontenedor.cdiRecp_contenedor.value,
+                contenido: Gcontenedor.contenido_contenedor.value,
+                descripcion: Gcontenedor.descripcion_contenedor.value,
+                estado: Gcontenedor.estado_cont.value
+            });
+            Gcontenedor.reset();
         });
-
-        // Función para eliminar un documento
-        document.getElementById("btnEliminar").addEventListener("click", async () => {
-            const docId = prompt("Ingrese el ID del documento a eliminar:");
-            if (docId) {
-                try {
-                    await deleteDoc(doc(db, "contenedor", docId));
-                    alert("Documento eliminado exitosamente.");
-                } catch (error) {
-                    console.error("Error al eliminar el documento: ", error);
-                    alert("¡Error al eliminar el documento!");
-                }
-            }
-        });
-
-        // Función para modificar un documento
-        document.getElementById("btnModificar").addEventListener("click", async () => {
-            const docId = prompt("Ingrese el ID del documento a modificar:");
-            if (docId) {
-                try {
-                    const docRef = doc(db, "contenedor", docId);
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        formIngresarCont.codContenedor.value = data.codigo;
-                        formIngresarCont.marcaContenedor.value = data.marca;
-                        formIngresarCont.respContenedor.value = data.aduanero;
-                        formIngresarCont.comEmiContenedor.value = data.com_emitente;
-                        formIngresarCont.cdiEmiContenedor.value = data.city_emitente;
-                        formIngresarCont.comRecpContenedor.value = data.com_recep;
-                        formIngresarCont.cdiRecpContenedor.value = data.ciudad_receptora;
-                        formIngresarCont.contenidoContenedor.value = data.contenido;
-                        formIngresarCont.descripcionContenedor.value = data.descripcion;
-                        formIngresarCont.estadoCont.value = data.estado;
-
-                        formIngresarCont.addEventListener("submit", async (e) => {
-                            e.preventDefault();
-                            try {
-                                await updateDoc(docRef, {
-                                    codigo: formIngresarCont.codContenedor.value,
-                                    marca: formIngresarCont.marcaContenedor.value,
-                                    aduanero: formIngresarCont.respContenedor.value,
-                                    com_emitente: formIngresarCont.comEmiContenedor.value,
-                                    city_emitente: formIngresarCont.cdiEmiContenedor.value,
-                                    com_recep: formIngresarCont.comRecpContenedor.value,
-                                    ciudad_receptora: formIngresarCont.cdiRecpContenedor.value,
-                                    contenido: formIngresarCont.contenidoContenedor.value,
-                                    descripcion: formIngresarCont.descripcionContenedor.value,
-                                    estado: formIngresarCont.estadoCont.value
-                                });
-                                formIngresarCont.reset();
-                                alert("¡Datos modificados exitosamente!");
-                            } catch (error) {
-                                console.error("Error al modificar el documento: ", error);
-                                alert("¡Error al modificar los datos!");
-                            }
-                        }, { once: true });
-                    } else {
-                        alert("No se encontró el documento.");
-                    }
-                } catch (error) {
-                    console.error("Error al obtener el documento: ", error);
-                    alert("¡Error al obtener los datos!");
-                }
-            }
-        });
-    </script>
+      </script>
 </body>
 </html>
