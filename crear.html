@@ -133,6 +133,59 @@
                 }
             }
         });
+
+        // Función para modificar un documento
+        document.getElementById("btnModificar").addEventListener("click", async () => {
+            const docId = prompt("Ingrese el ID del documento a modificar:");
+            if (docId) {
+                try {
+                    const docRef = doc(db, "contenedor", docId);
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        formIngresarCont.codContenedor.value = data.codigo;
+                        formIngresarCont.marcaContenedor.value = data.marca;
+                        formIngresarCont.respContenedor.value = data.aduanero;
+                        formIngresarCont.comEmiContenedor.value = data.com_emitente;
+                        formIngresarCont.cdiEmiContenedor.value = data.city_emitente;
+                        formIngresarCont.comRecpContenedor.value = data.com_recep;
+                        formIngresarCont.cdiRecpContenedor.value = data.ciudad_receptora;
+                        formIngresarCont.contenidoContenedor.value = data.contenido;
+                        formIngresarCont.descripcionContenedor.value = data.descripcion;
+                        formIngresarCont.estadoCont.value = data.estado;
+
+                        formIngresarCont.addEventListener("submit", async (e) => {
+                            e.preventDefault();
+                            try {
+                                await updateDoc(docRef, {
+                                    codigo: formIngresarCont.codContenedor.value,
+                                    marca: formIngresarCont.marcaContenedor.value,
+                                    aduanero: formIngresarCont.respContenedor.value,
+                                    com_emitente: formIngresarCont.comEmiContenedor.value,
+                                    city_emitente: formIngresarCont.cdiEmiContenedor.value,
+                                    com_recep: formIngresarCont.comRecpContenedor.value,
+                                    ciudad_receptora: formIngresarCont.cdiRecpContenedor.value,
+                                    contenido: formIngresarCont.contenidoContenedor.value,
+                                    descripcion: formIngresarCont.descripcionContenedor.value,
+                                    estado: formIngresarCont.estadoCont.value
+                                });
+                                formIngresarCont.reset();
+                                alert("¡Datos modificados exitosamente!");
+                            } catch (error) {
+                                console.error("Error al modificar el documento: ", error);
+                                alert("¡Error al modificar los datos!");
+                            }
+                        }, { once: true });
+                    } else {
+                        alert("No se encontró el documento.");
+                    }
+                } catch (error) {
+                    console.error("Error al obtener el documento: ", error);
+                    alert("¡Error al obtener los datos!");
+                }
+            }
+        });
     </script>
 </body>
 </html>
